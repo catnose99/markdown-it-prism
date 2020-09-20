@@ -1,7 +1,6 @@
 import Prism, { Grammar } from "prismjs";
 import loadLanguages from "prismjs/components/";
 import MarkdownIt from "markdown-it";
-const md = require("markdown-it");
 
 interface Options {
   plugins: string[];
@@ -93,7 +92,6 @@ function selectLanguage(
     langToUse = options.defaultLanguageForUnknown;
     prismLang = loadPrismLang(langToUse);
   }
-  langToUse = md.utils.escapeHtml(langToUse);
   return [langToUse, prismLang];
 }
 
@@ -122,7 +120,9 @@ function highlight(
     ? Prism.highlight(text, prismLang, langToUse)
     : markdownit.utils.escapeHtml(text);
   const classAttribute = langToUse
-    ? ` class="${markdownit.options.langPrefix}${langToUse}"`
+    ? ` class="${markdownit.options.langPrefix}${markdownit.utils.escapeHtml(
+        langToUse
+      )}"`
     : "";
   return `<pre${classAttribute}><code${classAttribute}>${code}</code></pre>`;
 }

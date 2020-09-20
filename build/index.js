@@ -23,8 +23,6 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-const md = require("markdown-it");
-
 const DEFAULTS = {
   plugins: [],
   init: () => {// do nothing by default
@@ -92,7 +90,6 @@ function selectLanguage(options, lang) {
     prismLang = loadPrismLang(langToUse);
   }
 
-  langToUse = md.utils.escapeHtml(langToUse);
   return [langToUse, prismLang];
 }
 /**
@@ -118,7 +115,7 @@ function highlight(markdownit, options, text, lang) {
         prismLang = _selectLanguage2[1];
 
   const code = prismLang ? _prismjs.default.highlight(text, prismLang, langToUse) : markdownit.utils.escapeHtml(text);
-  const classAttribute = langToUse ? ` class="${markdownit.options.langPrefix}${langToUse}"` : "";
+  const classAttribute = langToUse ? ` class="${markdownit.options.langPrefix}${markdownit.utils.escapeHtml(langToUse)}"` : "";
   return `<pre${classAttribute}><code${classAttribute}>${code}</code></pre>`;
 }
 /**
