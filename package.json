@@ -29,21 +29,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jGleitz/markdown-it-prism.git"
+    "url": "https://github.com/catnose99/markdown-it-prism.git"
   },
   "scripts": {
+    "build": "npm-run-all build:*",
     "build:transpile": "babel ./src --out-dir build --extensions '.ts'",
     "build:types": "tsc --project src",
     "lint": "npm-run-all lint:*",
     "lint:types": "tsc",
-    "lint:style": "eslint .",
     "lint:commits": "commitlint --from=semantic-commit-start --to=HEAD",
-    "prepack": "npm-run-all build:*",
     "unittest": "jest",
     "test": "npm-run-all lint:* unittest"
   },
   "dependencies": {
-    "prismjs": "1.21.0"
+    "prismjs": "^1.21.0"
   },
   "devDependencies": {
     "@babel/cli": "7.11.6",
@@ -58,13 +57,10 @@
     "@types/jest": "26.0.14",
     "@types/markdown-it": "10.0.2",
     "@types/prismjs": "1.16.1",
-    "@typescript-eslint/eslint-plugin": "4.1.1",
-    "@typescript-eslint/parser": "4.1.1",
     "babel-plugin-add-module-exports": "1.0.4",
-    "eslint": "7.9.0",
     "husky": "4.3.0",
     "jest": "26.4.2",
-    "markdown-it": "11.0.1",
+    "markdown-it": "^11.0.1",
     "npm-run-all": "4.1.5",
     "semantic-release": "17.1.2",
     "typescript": "4.0.3"
